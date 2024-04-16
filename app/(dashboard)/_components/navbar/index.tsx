@@ -1,13 +1,15 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
+import { Search } from "lucide-react";
 import React from "react";
+import SearchInput from "./search-input";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center gap-x-4 p-5 bg-slate-300">
+    <div className="flex items-center gap-x-4 p-5 ">
       <div className="hidden lg:flex lg:flex-1">
-        <input type="text" name="" id="" placeholder="Type to search" />
+        <SearchInput />
       </div>
       <UserButton />
     </div>

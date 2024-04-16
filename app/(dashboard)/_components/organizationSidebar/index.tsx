@@ -59,7 +59,7 @@ const OrganizationalSidebar = () => {
         >
           <Link href="/">
             <LayoutDashboard className="h-4 w-4 mr-2" />
-            Team Boards
+            Team Slates
           </Link>
         </Button>
         <Button
@@ -75,7 +75,7 @@ const OrganizationalSidebar = () => {
             }}
           >
             <Star className="h-4 w-4 mr-2" />
-            Favourite Boards
+            Favourite Slates
           </Link>
         </Button>
       </div>
