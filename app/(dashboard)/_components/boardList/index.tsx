@@ -14,8 +14,6 @@ const BoardList: React.FC<BoardListProps> = ({ orgId, query }) => {
   if (!data?.length && query.favourites) return <EmptyFavourites />;
 
   if (!data?.length) return <EmptySlates />;
-
-  return <div>{JSON.stringify(query)}</div>;
 };
 
 export default BoardList;
