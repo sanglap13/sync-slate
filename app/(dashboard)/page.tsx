@@ -4,7 +4,7 @@ import React from "react";
 import EmptyOrg from "./_components/emptyOrg";
 import { useOrganization } from "@clerk/nextjs";
 import { DashboardPageProps } from "@/@types/components/TDashboard";
-import BoardList from "./_components/boardList";
+import SlateList from "./_components/slateList";
 
 const DashboardPage: React.FC<DashboardPageProps> = ({ searchParams }) => {
   const { organization } = useOrganization();
@@ -14,7 +14,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ searchParams }) => {
       {!organization ? (
         <EmptyOrg />
       ) : (
-        <BoardList query={searchParams} orgId={organization.id} />
+        <SlateList query={searchParams} orgId={organization.id} />
       )}
     </div>
   );
