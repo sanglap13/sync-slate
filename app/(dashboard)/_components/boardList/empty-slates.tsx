@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 const EmptySlates: React.FC = () => {
   const { organization } = useOrganization();
-  const { mutate, pending } = useApiMutation(api.board.create);
+  const { mutate, pending } = useApiMutation(api.slate.create);
 
   const handleCreateClick = () => {
     if (!organization) return;
