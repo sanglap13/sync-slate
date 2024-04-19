@@ -20,7 +20,7 @@ const EmptySlates: React.FC = () => {
       title: "Untitled Slate",
     })
       .then((id) => {
-        toast.success("Slate created successfully"); //TODO: redirect to board/id
+        toast.success("Slate created successfully"); //TODO: redirect to slate/id
       })
       .catch(() => {
         toast.error("Failed to create slate");
