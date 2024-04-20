@@ -8,3 +8,12 @@ export interface SlateCardProps {
   orgId: string;
   isFavourite: boolean;
 }
+
+export interface FooterProps {
+  isFavourite: boolean;
+  title: string;
+  authorLabel: string;
+  createdAtLabel: string;
+  onClick: () => void;
+  disabled: boolean;
+}
