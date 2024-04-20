@@ -13,7 +13,21 @@ import NewSlateButton from "./new-slate-button";
 const SlateList: React.FC<BoardListProps> = ({ orgId, query }) => {
   const data = useQuery(api.slates.get, { orgId });
 
-  if (data === undefined) return <div>Loading...</div>;
+  if (data === undefined)
+    return (
+      <div>
+        <h2 className="text-3xl">
+          {query.favourites ? "Favourites" : "Team Slates"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
+          <NewSlateButton orgId={orgId} disabled />
+          <SlateCard.Skeleton />
+          <SlateCard.Skeleton />
+          <SlateCard.Skeleton />
+          <SlateCard.Skeleton />
+        </div>
+      </div>
+    );
 
   if (!data?.length && query.search) return <EmptySearch />;
 

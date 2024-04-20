@@ -35,7 +35,8 @@ const NewSlateButton: React.FC<NewSlateButtonProps> = ({ orgId, disabled }) => {
       onClick={handleCreateSlateClick}
       className={cn(
         "col-span-1 aspect-[100/127] bg-blue-600 rounded-lg flex flex-col items-center justify-center hover:bg-blue-800 py-6",
-        (pending || disabled) && "opacity-75"
+        (pending || disabled) &&
+          "opacity-75 hover:bg-blue-600 cursor-not-allowed"
       )}
     >
       <div />

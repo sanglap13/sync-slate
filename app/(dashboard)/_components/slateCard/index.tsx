@@ -8,8 +8,9 @@ import Overlay from "./overlay";
 import { useAuth } from "@clerk/nextjs";
 import { formatDistanceToNow } from "date-fns";
 import Footer from "./footer";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const SlateCard: React.FC<SlateCardProps> = ({
+const SlateCard = ({
   id,
   title,
   imageUrl,
@@ -18,7 +19,7 @@ const SlateCard: React.FC<SlateCardProps> = ({
   createdAt,
   orgId,
   isFavourite,
-}): JSX.Element => {
+}: SlateCardProps) => {
   const { userId } = useAuth();
 
   const authorLabel = userId === authorId ? "You" : authorName;
@@ -49,3 +50,11 @@ const SlateCard: React.FC<SlateCardProps> = ({
 };
 
 export default SlateCard;
+
+SlateCard.Skeleton = function SlateCardSkeleton() {
+  return (
+    <div className="aspect-[100/127] rounded-lg overflow-hidden">
+      <Skeleton className="h-full w-full" />
+    </div>
+  );
+};

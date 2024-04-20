@@ -7,6 +7,7 @@ export interface SlateCardProps {
   createdAt: number;
   orgId: string;
   isFavourite: boolean;
+  Skeleton?: any;
 }
 
 export interface FooterProps {
