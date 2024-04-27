@@ -70,3 +70,53 @@ export const update = mutation({
     return slate;
   },
 });
+
+export const favorite = mutation({
+  args: { id: v.id("boards"), orgId: v.string() },
+  handler: async (context, args) => {
+    const identity = await context.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized!");
+
+    const board = await context.db.get(args.id);
+    if (!board) throw new Error("Slate not found!");
+
+    const userId = identity.subject;
+    const existingFavorite = await context.db
+      .query("userFavorites")
+      .withIndex("by_user_board_org", (query) => {
+        return query.eq("userId", userId).eq("boardId", board._id).eq("orgId", args.orgId);
+      })
+      .unique();
+
+    if (existingFavorite) throw new Error("Already addded to Favorite!");
+
+    await context.db.insert("userFavorites", { userId, boardId: board._id, orgId: args.orgId });
+
+    return board;
+  },
+});
+
+export const unFavorite = mutation({
+  args: { id: v.id("boards") },
+  handler: async (context, args) => {
+    const identity = await context.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized!");
+
+    const board = await context.db.get(args.id);
+    if (!board) throw new Error("Slate not found!");
+
+    const userId = identity.subject;
+    const existingFavorite = await context.db
+      .query("userFavorites")
+      .withIndex("by_user_board", (query) => {
+        return query.eq("userId", userId).eq("boardId", board._id);
+      })
+      .unique();
+
+    if (!existingFavorite) throw new Error("Slate not found in the favorite!");
+
+    await context.db.delete(existingFavorite._id);
+
+    return board;
+  },
+});
