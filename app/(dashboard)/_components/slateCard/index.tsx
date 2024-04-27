@@ -11,6 +11,9 @@ import Footer from "./footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import Actions from "@/components/shared/Actions";
 import { MoreHorizontal } from "lucide-react";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 const SlateCard = ({
   id,
@@ -28,6 +31,21 @@ const SlateCard = ({
   const createdAtLabel = formatDistanceToNow(createdAt, {
     addSuffix: true,
   });
+
+  const { mutate: onFavorite, pending: pendingFavorite } = useApiMutation(api.slate.favorite);
+  const { mutate: onUnFavorite, pending: pendingUnFavorite } = useApiMutation(api.slate.unFavorite);
+
+  const handleToggleFavorite = () => {
+    if (isFavourite)
+      onUnFavorite({ id })
+        .then(() => toast.success("Removed from Favorite!"))
+        .catch(() => toast.error("Failed to unfavorite"));
+    else
+      onFavorite({ id, orgId })
+        .then(() => toast.success("Added to Favorite!"))
+        .catch(() => toast.error("Failed to Favorite"));
+  };
+
   return (
     <Link href={`/slate/${id}`}>
       <div
@@ -48,8 +66,8 @@ const SlateCard = ({
           title={title}
           authorLabel={authorLabel}
           createdAtLabel={createdAtLabel}
-          onClick={() => {}}
-          disabled={false}
+          onClick={handleToggleFavorite}
+          disabled={pendingFavorite || pendingUnFavorite}
         />
       </div>
     </Link>

@@ -16,9 +16,7 @@ const SlateList: React.FC<BoardListProps> = ({ orgId, query }) => {
   if (data === undefined)
     return (
       <div>
-        <h2 className="text-3xl">
-          {query.favourites ? "Favourites" : "Team Slates"}
-        </h2>
+        <h2 className="text-3xl">{query.favourites ? "Favourites" : "Team Slates"}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
           <NewSlateButton orgId={orgId} disabled />
           <SlateCard.Skeleton />
@@ -37,21 +35,11 @@ const SlateList: React.FC<BoardListProps> = ({ orgId, query }) => {
 
   return (
     <div>
-      <h2 className="text-3xl">
-        {query.favourites ? "Favourites" : "Team Slates"}
-      </h2>
+      <h2 className="text-3xl">{query.favourites ? "Favourites" : "Team Slates"}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
         <NewSlateButton orgId={orgId} />
         {data?.map((slate) => {
-          const {
-            _id,
-            title,
-            imageUrl,
-            authorId,
-            authorName,
-            _creationTime,
-            orgId,
-          } = slate;
+          const { _id, title, imageUrl, authorId, authorName, _creationTime, orgId } = slate;
           return (
             <SlateCard
               key={_id}
@@ -62,7 +50,7 @@ const SlateList: React.FC<BoardListProps> = ({ orgId, query }) => {
               authorName={authorName}
               createdAt={_creationTime}
               orgId={orgId}
-              isFavourite={false}
+              isFavourite={slate.isFavorite}
             />
           );
         })}
