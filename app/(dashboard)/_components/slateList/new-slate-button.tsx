@@ -4,6 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { title } from "process";
 import React from "react";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ interface NewSlateButtonProps {
 
 const NewSlateButton: React.FC<NewSlateButtonProps> = ({ orgId, disabled }) => {
   const { mutate, pending } = useApiMutation(api.slate.create);
+  const router = useRouter();
 
   const handleCreateSlateClick = () => {
     mutate({
@@ -22,7 +24,8 @@ const NewSlateButton: React.FC<NewSlateButtonProps> = ({ orgId, disabled }) => {
       title: "Untitled Slate",
     })
       .then((id) => {
-        toast.success("Slate created successfully"); //TODO: Redirect to /slate/{id}
+        toast.success("Slate created successfully");
+        router.push(`/slate/${id}`);
       })
       .catch(() => {
         toast.error("Failed to create slate");
@@ -35,8 +38,7 @@ const NewSlateButton: React.FC<NewSlateButtonProps> = ({ orgId, disabled }) => {
       onClick={handleCreateSlateClick}
       className={cn(
         "col-span-1 aspect-[100/127] bg-blue-600 rounded-lg flex flex-col items-center justify-center hover:bg-blue-800 py-6",
-        (pending || disabled) &&
-          "opacity-75 hover:bg-blue-600 cursor-not-allowed"
+        (pending || disabled) && "opacity-75 hover:bg-blue-600 cursor-not-allowed"
       )}
     >
       <div />

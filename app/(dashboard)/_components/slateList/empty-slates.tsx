@@ -5,12 +5,14 @@ import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { useOrganization } from "@clerk/nextjs";
 import Image from "next/image";
-import React, { use } from "react";
+import { useRouter } from "next/navigation";
+import React from "react";
 import { toast } from "sonner";
 
 const EmptySlates: React.FC = () => {
   const { organization } = useOrganization();
   const { mutate, pending } = useApiMutation(api.slate.create);
+  const router = useRouter();
 
   const handleCreateClick = () => {
     if (!organization) return;
@@ -20,7 +22,8 @@ const EmptySlates: React.FC = () => {
       title: "Untitled Slate",
     })
       .then((id) => {
-        toast.success("Slate created successfully"); //TODO: redirect to slate/id
+        toast.success("Slate created successfully");
+        router.push(`/slate/${id}`);
       })
       .catch(() => {
         toast.error("Failed to create slate");
@@ -28,12 +31,7 @@ const EmptySlates: React.FC = () => {
   };
   return (
     <div className="h-full flex flex-col items-center justify-center">
-      <Image
-        src="/images/EmptySlates.png"
-        alt="Empty"
-        width={140}
-        height={140}
-      />
+      <Image src="/images/EmptySlates.png" alt="Empty" width={140} height={140} />
       <h2 className="text-2xl font-semibold mt-6">Create your first Slate!</h2>
       <p className="text-muted-foreground mt-2 textg-sm">
         Start by creating a slate for your organization
