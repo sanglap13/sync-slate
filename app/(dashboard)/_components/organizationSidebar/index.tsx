@@ -16,17 +16,14 @@ const font = Poppins({
 
 const OrganizationalSidebar = () => {
   const searchParams = useSearchParams();
-  const favourites = searchParams.get("favourites");
+  const favorites = searchParams.get("favorites");
 
   return (
     <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5">
       <Link href="/">
         <div className="flex items-center gap-x-2">
           <img src="/images/logo.png" alt="Logo" height={60} width={60} />
-          <span className={cn("font-semibold text-2xl", font.className)}>
-            {" "}
-            SyncSlate
-          </span>
+          <span className={cn("font-semibold text-2xl", font.className)}> SyncSlate</span>
         </div>
       </Link>
       <OrganizationSwitcher
@@ -52,7 +49,7 @@ const OrganizationalSidebar = () => {
       />
       <div className="space-y-1 w-full">
         <Button
-          variant={favourites ? "ghost" : "secondary"}
+          variant={favorites ? "ghost" : "secondary"}
           asChild
           size="lg"
           className="font-normal justify-start px-2 w-full"
@@ -63,7 +60,7 @@ const OrganizationalSidebar = () => {
           </Link>
         </Button>
         <Button
-          variant={favourites ? "secondary" : "ghost"}
+          variant={favorites ? "secondary" : "ghost"}
           asChild
           size="lg"
           className="font-normal justify-start px-2 w-full"
@@ -71,7 +68,7 @@ const OrganizationalSidebar = () => {
           <Link
             href={{
               pathname: "/",
-              query: { favourites: true },
+              query: { favorites: true },
             }}
           >
             <Star className="h-4 w-4 mr-2" />

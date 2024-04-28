@@ -49,8 +49,8 @@ export const remove = mutation({
 
     const existingFavorite = await context.db
       .query("userFavorites")
-      .withIndex("by_user_board", (query) => {
-        return query.eq("userId", userId).eq("boardId", args.id);
+      .withIndex("by_user_board", (q) => {
+        return q.eq("userId", userId).eq("boardId", args.id);
       })
       .unique();
 
@@ -93,8 +93,8 @@ export const favorite = mutation({
     const userId = identity.subject;
     const existingFavorite = await context.db
       .query("userFavorites")
-      .withIndex("by_user_board_org", (query) => {
-        return query.eq("userId", userId).eq("boardId", board._id).eq("orgId", args.orgId);
+      .withIndex("by_user_board", (q) => {
+        return q.eq("userId", userId).eq("boardId", board._id);
       })
       .unique();
 
