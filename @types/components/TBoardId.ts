@@ -1,7 +1,7 @@
 export interface IBoardIdPageProps {
-  params: { boardId: string };
+  params: { slateId: string };
 }
 
 export type TCanvasProps = {
-  boardId: string;
+  slateId: string;
 };

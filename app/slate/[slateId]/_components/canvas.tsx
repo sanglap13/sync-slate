@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Info from "./info";
-import Participants from "./participants";
-import Toolbar from "./toolbar";
 import { TCanvasProps } from "@/@types/components/TBoardId";
+import Info from "./info";
+import { Participants } from "./participants";
+import { Toolbar } from "./toolbar";
 
-const Canvas: React.FC<TCanvasProps> = ({ boardId }) => {
+const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
   return (
     <main className="h-full w-full relative bg-neutral-100 touch-none">
       <Info />
