@@ -1,6 +1,4 @@
 import { defineSchema, defineTable } from "convex/server";
-import { BoardsTable } from "./tables/boards";
-import { UserFavoriteTable } from "./tables/userFavorite";
 import { v } from "convex/values";
 
 export default defineSchema({
@@ -19,10 +17,10 @@ export default defineSchema({
   userFavorites: defineTable({
     orgId: v.string(),
     userId: v.string(),
-    boardId: v.string(),
+    boardId: v.id("boards"),
   })
     .index("by_board", ["boardId"])
-    .index("by_user_org", ["orgId"])
+    .index("by_user_org", ["userId", "orgId"])
     .index("by_user_board", ["userId", "boardId"])
     .index("by_user_board_org", ["userId", "boardId", "orgId"]),
 });
