@@ -7,6 +7,6 @@ export interface DashboardLayoutProps {
 export interface DashboardPageProps {
   searchParams: {
     search?: string;
-    favourites?: string;
+    favorites?: string;
   };
 }
