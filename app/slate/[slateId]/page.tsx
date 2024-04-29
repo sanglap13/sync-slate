@@ -1,10 +1,10 @@
 import React from "react";
 import Canvas from "./_components/canvas";
-import { IBoardIdPageProps } from "@/@types/components/TBoardId";
+import { ISlateIdPageProps } from "@/@types/components/TSlateId";
 import Room from "@/components/collaboration/room";
 import CanvasLoading from "./_components/canvas-loading";
 
-const SlateIdPage: React.FC<IBoardIdPageProps> = ({ params }): JSX.Element => {
+const SlateIdPage: React.FC<ISlateIdPageProps> = ({ params }): JSX.Element => {
   const { slateId } = params;
 
   return (
