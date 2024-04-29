@@ -1,6 +1,11 @@
 "use client";
 
-import React, { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import {
   Dialog,
   DialogContent,
@@ -28,7 +33,9 @@ const RenameModal: React.FC = (): JSX.Element => {
     setTitle(value);
   };
 
-  const handleRenameSlateSubmitClick: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleRenameSlateSubmitClick: FormEventHandler<HTMLFormElement> = (
+    event
+  ) => {
     event.preventDefault();
 
     mutate({ id: initialValues.id, title })
@@ -47,8 +54,9 @@ const RenameModal: React.FC = (): JSX.Element => {
         <DialogHeader>
           <DialogTitle>Edit Slate Title</DialogTitle>
         </DialogHeader>
-        <DialogDescription>Enter a new title for the selected slate</DialogDescription>
-        <DialogDescription>Enter a new title for the selected slate</DialogDescription>
+        <DialogDescription>
+          Enter a new title for the selected slate
+        </DialogDescription>
         <form onSubmit={handleRenameSlateSubmitClick} className="space-y-4">
           <Input
             disabled={pending}
