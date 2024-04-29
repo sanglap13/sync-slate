@@ -2,7 +2,13 @@ import { createClient } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 
 const client = createClient({
-  publicApiKey: "pk_prod_KKDekWDwlaRF8Y4tsZNa-xwtnWJKr1t0G24sCMPxcvXEnVBQAAbatgcPy3ss-m6Z",
+  //aroy
+  // publicApiKey: "pk_prod_KKDekWDwlaRF8Y4tsZNa-xwtnWJKr1t0G24sCMPxcvXEnVBQAAbatgcPy3ss-m6Z",
+
+  //smridha
+  // publicApiKey:
+  //   "pk_dev_9nYohJNg5hbF0QYHjFAgYX1yehAqvZgk-_0XxYs98XhksYqnii5ossr_E7A_Etxq",
+  authEndpoint: "/api/liveblocks-auth",
 });
 
 // Presence represents the properties that exist on every user in the Room
@@ -28,6 +34,11 @@ type Storage = {
 type UserMeta = {
   // id?: string,  // Accessible through `user.id`
   // info?: Json,  // Accessible through `user.info`
+  id?: string;
+  info?: {
+    name?: string;
+    picture?: string;
+  };
 };
 
 // Optionally, the type of custom events broadcast and listened to in this
@@ -91,7 +102,9 @@ export const {
     // useUser,
     // useRoomInfo
   },
-} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(client);
+} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
+  client
+);
 
 // Project-level hooks, use inside `LiveblocksProvider`
 export const {

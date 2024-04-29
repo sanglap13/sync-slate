@@ -16,6 +16,8 @@ import type {
 } from "convex/server";
 import type * as slate from "../slate.js";
 import type * as slates from "../slates.js";
+import type * as tables_boards from "../tables/boards.js";
+import type * as tables_userFavorite from "../tables/userFavorite.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -28,6 +30,8 @@ import type * as slates from "../slates.js";
 declare const fullApi: ApiFromModules<{
   slate: typeof slate;
   slates: typeof slates;
+  "tables/boards": typeof tables_boards;
+  "tables/userFavorite": typeof tables_userFavorite;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

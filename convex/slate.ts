@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 const images = [
@@ -100,7 +100,11 @@ export const favorite = mutation({
 
     if (existingFavorite) throw new Error("Already addded to Favorite!");
 
-    await context.db.insert("userFavorites", { userId, boardId: board._id, orgId: args.orgId });
+    await context.db.insert("userFavorites", {
+      userId,
+      boardId: board._id,
+      orgId: args.orgId,
+    });
 
     return board;
   },
@@ -126,6 +130,15 @@ export const unFavorite = mutation({
     if (!existingFavorite) throw new Error("Slate not found in the favorite!");
 
     await context.db.delete(existingFavorite._id);
+
+    return board;
+  },
+});
+
+export const get = query({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const board = await ctx.db.get(args.id);
 
     return board;
   },
