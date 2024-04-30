@@ -8,6 +8,7 @@ const client = createClient({
   //smridha
   // publicApiKey:
   //   "pk_dev_9nYohJNg5hbF0QYHjFAgYX1yehAqvZgk-_0XxYs98XhksYqnii5ossr_E7A_Etxq",
+  throttle: 16,
   authEndpoint: "/api/liveblocks-auth",
 });
 
