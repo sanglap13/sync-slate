@@ -7,3 +7,10 @@ export interface TCanvasProps {
 }
 
 export interface InfoProps extends TCanvasProps {}
+
+export interface UserAvatarProps {
+  src?: string;
+  name?: string;
+  fallback?: string;
+  borderColor?: string;
+}

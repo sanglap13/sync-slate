@@ -23,7 +23,7 @@ const font = Poppins({
 });
 
 const TabSeparator = () => {
-  return <div className="text-neutral-300 px-1.5"></div>;
+  return <div className="text-neutral-300 px-1.5"> | </div>;
 };
 
 export const Info: React.FC<InfoProps> = ({ slateId }) => {
