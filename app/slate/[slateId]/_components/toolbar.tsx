@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { ToolBarProps } from "@/@types/components/TSlateId";
-import { CanvasMode } from "@/@types/components/TCanvas";
+import { CanvasMode, LayerType } from "@/@types/components/TCanvas";
 
 export const Toolbar: React.FC<ToolBarProps> = ({
   canvasState,
@@ -29,13 +29,27 @@ export const Toolbar: React.FC<ToolBarProps> = ({
           label="Select"
           icon={MousePointer2}
           onClick={() => setCanvasState({ mode: CanvasMode.None })}
-          isActive={canvasState.mode === CanvasMode.None}
+          isActive={
+            canvasState.mode === CanvasMode.None ||
+            canvasState.mode === CanvasMode.Translating ||
+            canvasState.mode === CanvasMode.Resizing ||
+            canvasState.mode === CanvasMode.Pressing ||
+            canvasState.mode === CanvasMode.SelectionNet
+          }
         />
         <ToolButton
           label="Text"
           icon={Type}
-          onClick={() => setCanvasState({ mode: CanvasMode.Inserting })}
-          isActive={canvasState.mode === CanvasMode.Inserting}
+          onClick={() =>
+            setCanvasState({
+              mode: CanvasMode.Inserting,
+              layerType: LayerType.Text,
+            })
+          }
+          isActive={
+            canvasState.mode === CanvasMode.Inserting &&
+            canvasState.layerType === LayerType.Text
+          }
         />
         <ToolButton
           label="Sticky Note"
