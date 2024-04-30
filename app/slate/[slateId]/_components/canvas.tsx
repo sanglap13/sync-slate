@@ -7,6 +7,7 @@ import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 import { CanvasMode, CanvasState } from "@/@types/components/TCanvas";
 import { useCanRedo, useCanUndo, useHistory } from "@/liveblocks.config";
+import CursorsPresence from "./cursors-presence";
 
 const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
   const [canvasState, setCanvasState] = useState<CanvasState>({
@@ -29,6 +30,11 @@ const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
         undo={history.undo}
         redo={history.redo}
       />
+      <svg className="h-[100vh] w-[100vw]">
+        <g>
+          <CursorsPresence />
+        </g>
+      </svg>
     </main>
   );
 };

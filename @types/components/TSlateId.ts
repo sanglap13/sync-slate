@@ -36,3 +36,7 @@ export interface ToolBarProps {
   canUndo: boolean;
   canRedo: boolean;
 }
+
+export interface CursorProps {
+  connectionId: number;
+}
