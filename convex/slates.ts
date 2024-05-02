@@ -23,10 +23,15 @@ export const get = query({
         .order("desc")
         .collect();
 
-      const favoritedSlateIds = favoritTaggedSlates.map((slate) => slate.boardId);
+      const favoritedSlateIds = favoritTaggedSlates.map(
+        (slate) => slate.boardId
+      );
       const filteredSlates = await getAllOrThrow(ctx.db, favoritedSlateIds);
 
-      const result = filteredSlates.map((slate) => ({ ...slate, isFavorite: true }));
+      const result = filteredSlates.map((slate) => ({
+        ...slate,
+        isFavorite: true,
+      }));
 
       return result;
     }
@@ -36,14 +41,14 @@ export const get = query({
 
     if (title) {
       slates = await ctx.db
-        .query("boards")
+        .query("slates")
         .withSearchIndex("search_title", (q) => {
           return q.search("title", title).eq("orgId", args.orgId);
         })
         .collect();
     } else {
       slates = await ctx.db
-        .query("boards")
+        .query("slates")
         .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
         .order("desc")
         .collect();

@@ -29,7 +29,7 @@ const TabSeparator = () => {
 export const Info: React.FC<InfoProps> = ({ slateId }) => {
   const { onOpen } = useRenameModal();
 
-  const data = useQuery(api.slate.get, { id: slateId as Id<"boards"> });
+  const data = useQuery(api.slate.get, { id: slateId as Id<"slates"> });
   // const { _id, title } = data;
 
   if (!data) return <InfoSkeleton />;

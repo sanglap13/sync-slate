@@ -28,7 +28,7 @@ export const create = mutation({
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
 
-    const slate = await ctx.db.insert("boards", {
+    const slate = await ctx.db.insert("slates", {
       title: args.title,
       orgId: args.orgId,
       authorId: identity.subject,
@@ -40,7 +40,7 @@ export const create = mutation({
 });
 
 export const remove = mutation({
-  args: { id: v.id("boards") },
+  args: { id: v.id("slates") },
   handler: async (context, args) => {
     const identity = await context.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized!");
@@ -61,7 +61,7 @@ export const remove = mutation({
 });
 
 export const update = mutation({
-  args: { id: v.id("boards"), title: v.string() },
+  args: { id: v.id("slates"), title: v.string() },
   handler: async (context, args) => {
     const title = args.title.trim();
     const identity = args.title.trim();
@@ -82,19 +82,19 @@ export const update = mutation({
 });
 
 export const favorite = mutation({
-  args: { id: v.id("boards"), orgId: v.string() },
+  args: { id: v.id("slates"), orgId: v.string() },
   handler: async (context, args) => {
     const identity = await context.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized!");
 
-    const board = await context.db.get(args.id);
-    if (!board) throw new Error("Slate not found!");
+    const slate = await context.db.get(args.id);
+    if (!slate) throw new Error("Slate not found!");
 
     const userId = identity.subject;
     const existingFavorite = await context.db
       .query("userFavorites")
       .withIndex("by_user_board", (q) => {
-        return q.eq("userId", userId).eq("boardId", board._id);
+        return q.eq("userId", userId).eq("boardId", slate._id);
       })
       .unique();
 
@@ -102,28 +102,28 @@ export const favorite = mutation({
 
     await context.db.insert("userFavorites", {
       userId,
-      boardId: board._id,
+      boardId: slate._id,
       orgId: args.orgId,
     });
 
-    return board;
+    return slate;
   },
 });
 
 export const unFavorite = mutation({
-  args: { id: v.id("boards") },
+  args: { id: v.id("slates") },
   handler: async (context, args) => {
     const identity = await context.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized!");
 
-    const board = await context.db.get(args.id);
-    if (!board) throw new Error("Slate not found!");
+    const slate = await context.db.get(args.id);
+    if (!slate) throw new Error("Slate not found!");
 
     const userId = identity.subject;
     const existingFavorite = await context.db
       .query("userFavorites")
       .withIndex("by_user_board", (query) => {
-        return query.eq("userId", userId).eq("boardId", board._id);
+        return query.eq("userId", userId).eq("boardId", slate._id);
       })
       .unique();
 
@@ -131,15 +131,15 @@ export const unFavorite = mutation({
 
     await context.db.delete(existingFavorite._id);
 
-    return board;
+    return slate;
   },
 });
 
 export const get = query({
-  args: { id: v.id("boards") },
+  args: { id: v.id("slates") },
   handler: async (ctx, args) => {
-    const board = await ctx.db.get(args.id);
+    const slate = await ctx.db.get(args.id);
 
-    return board;
+    return slate;
   },
 });
