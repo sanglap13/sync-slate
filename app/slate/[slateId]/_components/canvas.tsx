@@ -65,9 +65,9 @@ const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
         onWheel={onWheel}
         onPointerMove={onPointerMove}
       >
-        {/* <g>
+        <g>
           <CursorsPresence />
-        </g> */}
+        </g>
       </svg>
     </main>
   );
