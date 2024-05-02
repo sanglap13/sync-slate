@@ -1,3 +1,5 @@
+"use client";
+
 import { CursorProps } from "@/@types/components/TSlateId";
 import { connectionIdToColor } from "@/lib/utils";
 import { useOther } from "@/liveblocks.config";
@@ -19,7 +21,7 @@ const Cursor: React.FC<CursorProps> = memo(({ connectionId }) => {
         transform: `translateX(${x}px) translateY(${y}px) `,
       }}
       height={50}
-      width={50}
+      width={name.length * 10 + 24}
       className="relative drop-shadow-md"
     >
       <MousePointer2
@@ -29,6 +31,12 @@ const Cursor: React.FC<CursorProps> = memo(({ connectionId }) => {
           color: connectionIdToColor(connectionId),
         }}
       />
+      <div
+        className="absolute left-5 px-1.5 py-0.5 rounded-md text-xs text-white font-semibold"
+        style={{ backgroundColor: connectionIdToColor(connectionId) }}
+      >
+        {name}
+      </div>
     </foreignObject>
   );
 });

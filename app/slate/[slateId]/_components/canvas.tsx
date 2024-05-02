@@ -48,7 +48,8 @@ const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
   );
 
   return (
-    <main className="h-full w-full relative bg-neutral-100 touch-none">
+    // <div></div>
+    <main className=" h-full w-full  bg-neutral-100 touch-none">
       <Info slateId={slateId} />
       <Participants />
       <Toolbar
@@ -64,9 +65,9 @@ const Canvas: React.FC<TCanvasProps> = ({ slateId }) => {
         onWheel={onWheel}
         onPointerMove={onPointerMove}
       >
-        <g>
+        {/* <g>
           <CursorsPresence />
-        </g>
+        </g> */}
       </svg>
     </main>
   );

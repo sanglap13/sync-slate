@@ -16,8 +16,8 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  cursor: { x: number; y: number } | null;
-  // ...
+  // prettier-ignore
+  cursor: { x: number, y: number } | null,
 };
 
 // Optionally, Storage represents the shared document that persists in the
@@ -35,11 +35,13 @@ type Storage = {
 type UserMeta = {
   // id?: string,  // Accessible through `user.id`
   // info?: Json,  // Accessible through `user.info`
-  id?: string;
+  // prettier-ignore
+  id?: string,
+  // prettier-ignore
   info?: {
-    name?: string;
-    picture?: string;
-  };
+    name?: string,
+    picture?: string,
+  },
 };
 
 // Optionally, the type of custom events broadcast and listened to in this

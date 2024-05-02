@@ -9,7 +9,9 @@ export interface TCanvasProps {
   slateId: string;
 }
 
-export interface InfoProps extends TCanvasProps {}
+export interface InfoProps {
+  slateId: string;
+}
 
 export interface UserAvatarProps {
   src?: string;

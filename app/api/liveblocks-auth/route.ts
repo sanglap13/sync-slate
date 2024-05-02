@@ -36,9 +36,9 @@ export async function POST(request: Request) {
   });
 
   //can comment out if having problem in opening other browser
-  if (slate?.orgId !== authorization.orgId) {
-    return new Response("Unauthorized", { status: 403 });
-  }
+  // if (slate?.orgId !== authorization.orgId) {
+  //   return new Response("Unauthorized", { status: 403 });
+  // }
 
   const userInfo = {
     name: user.firstName || "Teammate",

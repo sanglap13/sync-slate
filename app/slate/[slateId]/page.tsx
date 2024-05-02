@@ -9,6 +9,7 @@ const SlateIdPage: React.FC<ISlateIdPageProps> = ({ params }): JSX.Element => {
 
   return (
     <Room roomId={slateId} fallback={<CanvasLoading />}>
+      {/* <div>yo</div> */}
       <Canvas slateId={slateId} />;
     </Room>
   );
