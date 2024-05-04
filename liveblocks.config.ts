@@ -1,13 +1,13 @@
-import { createClient } from "@liveblocks/client";
+import { Color, Layer } from "@/types/canvas";
+import {
+  createClient,
+  LiveList,
+  LiveMap,
+  LiveObject,
+} from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 
 const client = createClient({
-  //aroy
-  // publicApiKey: "pk_prod_KKDekWDwlaRF8Y4tsZNa-xwtnWJKr1t0G24sCMPxcvXEnVBQAAbatgcPy3ss-m6Z",
-
-  //smridha
-  // publicApiKey:
-  //   "pk_dev_9nYohJNg5hbF0QYHjFAgYX1yehAqvZgk-_0XxYs98XhksYqnii5ossr_E7A_Etxq",
   throttle: 16,
   authEndpoint: "/api/liveblocks-auth",
 });
@@ -16,8 +16,11 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  // prettier-ignore
-  cursor: { x: number, y: number } | null,
+  cursor: { x: number; y: number } | null;
+  selection: string[];
+  pencilDraft: [x: number, y: number, pressure: number][] | null;
+  penColor: Color | null;
+  // ...
 };
 
 // Optionally, Storage represents the shared document that persists in the
@@ -25,23 +28,19 @@ type Presence = {
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
 type Storage = {
-  // author: LiveObject<{ firstName: string, lastName: string }>,
-  // ...
+  layers: LiveMap<string, LiveObject<Layer>>;
+  layerIds: LiveList<string>;
 };
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
 type UserMeta = {
-  // id?: string,  // Accessible through `user.id`
-  // info?: Json,  // Accessible through `user.info`
-  // prettier-ignore
-  id?: string,
-  // prettier-ignore
+  id?: string;
   info?: {
-    name?: string,
-    picture?: string,
-  },
+    name?: string;
+    picture?: string;
+  };
 };
 
 // Optionally, the type of custom events broadcast and listened to in this

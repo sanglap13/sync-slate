@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
 import { useOrganizationList } from "@clerk/nextjs";
-import Item from "./item";
+import { Item } from "./item";
 
-const List: React.FC = () => {
+export const List = () => {
   const { userMemberships } = useOrganizationList({
     userMemberships: {
       infinite: true,
@@ -14,12 +13,15 @@ const List: React.FC = () => {
   if (!userMemberships.data?.length) return null;
 
   return (
-    <div>
-      {userMemberships.data.map(({ id, organization: { name, imageUrl } }) => (
-        <Item key={id} id={id} name={name} imageURL={imageUrl} />
+    <ul className="space-y-4">
+      {userMemberships.data?.map((mem) => (
+        <Item
+          key={mem.organization.id}
+          id={mem.organization.id}
+          name={mem.organization.name}
+          imageUrl={mem.organization.imageUrl}
+        />
       ))}
-    </div>
+    </ul>
   );
 };
-
-export default List;

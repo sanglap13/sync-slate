@@ -1,25 +1,30 @@
-import React from "react";
-import { DashboardLayoutProps } from "@/@types/components/TDashboard";
-import Sidebar from "./_components/sidebar";
-import OrganizationalSidebar from "./_components/organizationSidebar";
-import Navbar from "./_components/navbar";
+import { Navbar } from "./_components/navbar";
+import { OrgSidebar } from "./_components/org-sidebar";
+import { Sidebar } from "./_components/sidebar";
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({
-  children,
-}): JSX.Element => {
+interface DashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+/**
+ * @description Layout structure for Dashboard
+ * @param param0 children accepts React.ReactNode elements
+ * @returns JSX Elements
+ */
+const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
-    <div className="h-full">
+    <main className="h-full">
       <Sidebar />
       <div className="pl-[60px] h-full">
         <div className="flex gap-x-3 h-full">
-          <OrganizationalSidebar />
+          <OrgSidebar />
           <div className="h-full flex-1">
             <Navbar />
             {children}
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

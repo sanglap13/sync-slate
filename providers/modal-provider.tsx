@@ -1,17 +1,23 @@
 "use client";
 
-import RenameModal from "@/components/modals/rename-modal";
-import React, { useState, useEffect } from "react";
+import { RenameModal } from "@/components/modals/rename-modal";
+import { useEffect, useState } from "react";
 
-// This has been done only to avoid hydration errors which occurs
-const ModalProvider = () => {
+/**
+ * @name ModalProvider
+ * @description The ModalProvider component avoid hydration error when displaying modals
+ * @returns JSX Elements (Modals)
+ */
+export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return <></>;
+  // if it is not mounted, it is not in the client side
+  // therefore, do not render anything
+  if (!isMounted) return null;
 
   return (
     <>
@@ -19,5 +25,3 @@ const ModalProvider = () => {
     </>
   );
 };
-
-export default ModalProvider;
