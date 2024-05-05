@@ -1,30 +1,49 @@
-# miro-clone-nextjs
+# SyncSlate
 
-![GitHub repo size](https://img.shields.io/github/repo-size/evanch98/miro-clone-nextjs)
-![GitHub stars](https://img.shields.io/github/stars/evanch98/miro-clone-nextjs?style=social)
-![GitHub forks](https://img.shields.io/github/forks/evanch98/miro-clone-nextjs?style=social)
+SyncSlate is an innovative web application designed to facilitate collaborative drawing experiences in real-time. With SyncSlate, users can unleash their creativity by sketching, doodling, and brainstorming together seamlessly, regardless of their physical location.
 
-<br />
-February, 2024. <br />
-Full-stack Miro Clone project built by using Next JS 14, React, TypeScript, Shadcn UI, Tailwind CSS, Convex Database, Zustand, liveblocks, and Clerk Auth.
+## Author
+
+- [@sanglap13](https://github.com/sanglap13)
+  (sanglapmridha@gmail.com)
+- [@arkajitroy](https://github.com/arkajitroy)
+  (arkajitroy11.official@gmail.com)
+
+## Tech Stack
+
+**Frontend:** Next JS 14, React, TypeScript, Shadcn UI, Tailwind CSS
+
+**Backend:** Convex
+
+**Authentication:** Clerk Auth
+
+**Web-Sockets:** liveblocks.io
 
 ## Features
 
 - Create organizations and invite team members seamlessly.
-- Collaborate with team members seamlessly in Miro-like whiteboard interface.
+- Collaborate with team members seamlessly in whiteboard interface.
 - Real-time collaboration using the real-time Convex database.
 - User authentication, organization creation, and management with Clerk Auth.
 - Responsive design with TailwindCSS.
 - State management using Zustand.
 
-## Getting Started
+## Screenshots
+
+![Home](/public/screenshots/s1.PNG)
+
+![Slate](/public/screenshots/s3.PNG)
+
+![Login](/public/screenshots/s4.PNG)
+
+## Install and Run Locally
 
 These instructions will help you set up and run the project on your local machine for development and testing purposes.
 
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/evanch98/notion-clone-nextjs.git
+git clone https://github.com/sanglap13/sync-slate.git
 cd your-repo-name
 ```
 
@@ -48,10 +67,11 @@ LIVEBLOCKS_SECRET_KEY=
 4. **Run the development server:**
 
 ```bash
+npx convex dev
 npm run dev
 ```
 
-5. **Start building and customizing your Miro Clone!**
+5. **Start building and customizing your SyncSlate!**
 
 ## Technologies Used
 
