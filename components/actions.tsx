@@ -53,8 +53,8 @@ export const Actions = ({
 
   const onDelete = () => {
     mutate({ id })
-      .then(() => toast.success("Board deleted"))
-      .catch(() => toast.error("Failed to delete board"));
+      .then(() => toast.success("Slate deleted"))
+      .catch(() => toast.error("Failed to delete slate"));
   };
 
   return (
