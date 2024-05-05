@@ -16,22 +16,22 @@ export const EmptyBoards = () => {
   const onClick = () => {
     if (!organization) return;
     mutate({
-      title: "Untitled",
+      title: "Untitled Slate",
       orgId: organization.id,
     })
       .then((id) => {
-        toast.success("Board created");
+        toast.success("Slate created successfully!");
         router.push(`/board/${id}`);
       })
-      .catch(() => toast.error("Failed to create board"));
+      .catch(() => toast.error("Failed to create slate"));
   };
 
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <Image src="/note.svg" height={140} width={140} alt="Empty" />
-      <h2 className="text-2xl font-semibold mt-6">Create your first board!</h2>
+      <h2 className="text-2xl font-semibold mt-6">Create your first slate!</h2>
       <p className="text-muted-foreground text-sm mt-2">
-        Start by creating a board for your organization
+        Start by creating a slate for your organization
       </p>
       <div className="mt-6">
         <Button
@@ -40,7 +40,7 @@ export const EmptyBoards = () => {
           onClick={onClick}
           size="lg"
         >
-          Create board
+          Create Slate
         </Button>
       </div>
     </div>

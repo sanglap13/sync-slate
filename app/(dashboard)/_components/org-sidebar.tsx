@@ -23,7 +23,9 @@ export const OrgSidebar = () => {
       <Link href="/">
         <div className="flex items-center gap-x-2">
           <Image src="/logo.svg" alt="Logo" height={24} width={24} />
-          <span className={cn("font-semibold text-2xl", font.className)}>SyncSlate</span>
+          <span className={cn("font-semibold text-2xl", font.className)}>
+            SyncSlate
+          </span>
         </div>
       </Link>
       <OrganizationSwitcher
@@ -56,7 +58,7 @@ export const OrgSidebar = () => {
         >
           <Link href="/">
             <LayoutDashboard className="h-4 w-4 mr-2" />
-            Team boards
+            Team Slates
           </Link>
         </Button>
         <Button
@@ -72,7 +74,7 @@ export const OrgSidebar = () => {
             }}
           >
             <Star className="h-4 w-4 mr-2" />
-            Favorite boards
+            Favourite Slates
           </Link>
         </Button>
       </div>

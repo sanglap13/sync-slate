@@ -19,13 +19,13 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
   const onClick = () => {
     mutate({
       orgId,
-      title: "Untitled",
+      title: "Untitled Slate",
     })
       .then((id) => {
-        toast.success("Board created");
+        toast.success("Slate created successfully!");
         router.push(`/board/${id}`);
       })
-      .catch(() => toast.error("Failed to create board"));
+      .catch(() => toast.error("Failed to create slate"));
   };
 
   return (
@@ -40,7 +40,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
     >
       <div />
       <Plus className="h-12 w-12 text-white stroke-1" />
-      <p className="text-xs text-white font-light">New board</p>
+      <p className="text-xs text-white font-light">New Slate</p>
     </button>
   );
 };
